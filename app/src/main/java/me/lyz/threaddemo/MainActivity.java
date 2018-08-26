@@ -1,6 +1,7 @@
 package me.lyz.threaddemo;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -29,6 +30,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init() {
+
+    }
+
+    /**
+     * AsyncTask使用
+     */
+    private void useAsyncTask() {
+        //所有AsyncTask默认都是在同一个线程池执行的
+        new MyAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        new MyAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        new MyAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        new MyAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+        new MyAsyncTask2().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        new MyAsyncTask2().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        new MyAsyncTask2().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        new MyAsyncTask2().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
 
