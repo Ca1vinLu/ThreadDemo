@@ -1,4 +1,4 @@
-package me.lyz.threaddemo;
+package me.lyz.threaddemo.asynctask;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -6,8 +6,8 @@ import android.util.Log;
 /**
  * @author LYZ 2018.08.21
  */
-public class MyAsyncTask2 extends AsyncTask<Void, Integer, Boolean> {
-    private static final String TAG = "MyAsyncTask2";
+public class MyAsyncTask extends AsyncTask<Void, Integer, Boolean> {
+    private static final String TAG = "MyAsyncTask";
 
     @Override
     protected Boolean doInBackground(Void... voids) {

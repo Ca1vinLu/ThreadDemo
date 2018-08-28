@@ -1,4 +1,4 @@
-package me.lyz.threaddemo;
+package me.lyz.threaddemo.service;
 
 import android.app.IntentService;
 import android.content.Intent;

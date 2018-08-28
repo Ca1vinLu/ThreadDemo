@@ -1,10 +1,13 @@
 package me.lyz.threaddemo;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.os.IBinder;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -14,6 +17,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+
+import me.lyz.threaddemo.asynctask.MyAsyncTask;
+import me.lyz.threaddemo.asynctask.MyAsyncTask2;
+import me.lyz.threaddemo.service.MyIntentService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +37,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init() {
+        ServiceConnection serviceConnection=new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service) {
 
+            }
+
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+
+            }
+        };
     }
 
     /**
