@@ -1,14 +1,18 @@
 package me.lyz.threaddemo;
 
 import android.content.Intent;
+import android.graphics.PixelFormat;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.Button;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -19,9 +23,10 @@ import me.lyz.threaddemo.asynctask.MyAsyncTask;
 import me.lyz.threaddemo.asynctask.MyAsyncTask2;
 import me.lyz.threaddemo.service.MyIntentService;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private static final String TAG = "MainActivity";
+    private WindowManager.LayoutParams mLayoutParams;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +34,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        findViewById(R.id.text_hello).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                startActivity(intent);
+            }
+        });
         init();
 
+        Button floatButton = new Button(this);
+        floatButton.setText("hello");
+        mLayoutParams = new WindowManager.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                0, 0, PixelFormat.TRANSPARENT);
+        mLayoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+                | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+        mLayoutParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY;
+
+        mLayoutParams.x = 100;
+        mLayoutParams.y = 300;
+        getWindowManager().addView(floatButton, mLayoutParams);
     }
 
     private void init() {
